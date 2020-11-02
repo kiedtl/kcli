@@ -13,21 +13,20 @@ import (
 	"strings"
 
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/pkg/profile"
 )
 
 // TODO: arg parsing!
 var (
-	enmul int
+	enmul  int
+	dbpath string
 )
 
 func main() {
-	defer profile.Start(profile.CPUProfile).Stop()
-
 	enmul = 25
+	dbpath = "./kcli.db"
 
 	// open database
-	db, err := sql.Open("sqlite3", "./kcli.db")
+	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
 		log.Fatal(err)
 	}
